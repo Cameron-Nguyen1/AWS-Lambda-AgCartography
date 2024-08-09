@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Antigenic Cartography!</title>
+    <style type="text/css">
+      @font-face {
+        font-family: "sans-serif";
+      }
+      body {
+        margin: 0;
+        font-family: "Amazon Ember", Helvetica, Arial, sans-serif;
+      }
+      h1 {
+        background-color: #7BAFD4;
+        color: white;
+        font-size: 3rem;
+        font-weight: 300;
+        text-shadow:
+          3px 3px 2px #000,
+          -3px 3px 2px #000,
+          -3px -3px 2px #000,
+          3px -3px 2px #000;
+        margin: 0;
+        padding: 1rem;
+        text-align: center;
+      }
+      h2, h3 {
+        font-weight: normal;
+        margin-top: 0;
+      }
+      h3 {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      #intro {
+        background-color: #232f3e;
+      }
+      #instructions {
+        background-color: #d5dbdb;
+        margin-bottom: 2rem;
+        padding: 2rem;
+      }
+      .hide {
+        display: none;
+      }
+      .section {
+        padding: 2rem;
+        padding-top: 0;
+      }
+      .section > div {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .section > div > div {
+        flex-grow: 1;
+      }
+      .card {
+        border-top: 1px solid #eaeded;
+        box-shadow: 0 1px 1px 0 rgba(0,28,36,.3), 1px 1px 1px 0 rgba(0,28,36,.15), -1px 1px 1px 0 rgba(0,28,36,.15);
+        padding: 1rem;
+      }
+      a {
+        color: #0073bb;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      input[type="text"] {
+        font-family: "Amazon Ember", Helvetica, Arial, sans-serif;
+        flex-grow: 1;
+        border: 1px solid #aab7b8;
+        border-radius: 2px;
+        color: #16191f;
+      }
+      input[type="text"]:focus {
+        border: 1px solid #00a1c9;
+        box-shadow: 0 0 0 1px #00a1c9;
+        outline: 2px dotted transparent;
+      }
+      form {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        padding-right: 3rem;
+      }
+      input[type="submit"] {
+        background-color: white;
+        border: 1px solid #545b64;
+        border-radius: 2px;
+        color: #545b64;
+        cursor: pointer;
+        font-weight: 700;
+        padding: .4rem 2rem;
+      }
+      input[type="submit"]:hover {
+        background-color: #f2f3f3;
+        border: 1px solid #16191f;
+        color: #16191f;
+      }
+
+      @media only screen and (max-width: 800px) {
+        .section > div {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Thanks for trying my cartography pipeline!</h1>
+    <div id="intro" class="section">
+    </div>
+    <div id="instructions" class="section">
+      <h2>Antigenic cartography for titer tables</h2>
+      <h3><b>Step 1:</b> Provide Cartography Parameters and Upload </h3>
+      <form id="cparams" action="https://YOUR_LAMBDA_CARTOGRAPHY_FUNCTION_URL.DOMAIN" method="POST" enctype="multipart/form-data">
+          <div>
+              <input name="limits" placeholder="X.Y. Limits: -5,5,-5,5" label="limits">
+              <input name="psize" placeholder="PointSizes.Ag.Sr: 5,2" label="outdir">
+          </div>
+          <div>
+              <input name="prefix" placeholder="Prefix: MyStudy" label="prefix">
+              <input name="outdir" placeholder="Outdir: MyDir" label="outdir">
+          </div>
+          <div>
+              <input name="transparency" placeholder="Opacity.Ag.Sr: .8,1" label="outdir">
+              <input name="Ag.Overprint" placeholder="Ag.Overprint: FALSE" label="outdir">
+          </div>
+          <div>
+              <input name="fileup" placeholder="myfile.csv" type="file" label="fileup">
+              <input type="submit" value="submit">
+          </div>
+      </form>
+    </div>
+    <div>
+      <h3>{replaceme}</h3>
+    </div>
+  </body>
+</html>
