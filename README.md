@@ -1,5 +1,5 @@
 # AWS_ANTIGENIC_CARTOGRAPHY
-Antigenic Cartography pipeline deployed on lambda. This pipeline interfaces with another lambda function that serves a "dynamic" HTML.
+Antigenic Cartography pipeline deployed on AWS across Lambda and S3. This pipeline interfaces with another lambda function that serves a "dynamic" HTML.
 
 This pipeline was designed to operate within the free tier of AWS Lambda usage. 
   If money were no object, a NAT gateway would eliminate the necessity to serve a download via dynamic HTML. The "Download Ready!" hypertext could be updated the moment it becomes available on S3, as opposed to updating upon submission which allows the user to      click an inactive link.
