@@ -1,4 +1,4 @@
-# AWS_ANTIGENIC_CARTOGRAPHY
+# AWS-Lambda-ANTIGENIC-CARTOGRAPHY
 Antigenic Cartography pipeline deployed on AWS across Lambda and S3. This pipeline interfaces with another lambda function that serves a "dynamic" HTML.
 
 This pipeline was designed to operate within the free tier of AWS Lambda usage. 
