@@ -4,7 +4,7 @@ def pmParse(database,query,rmax,sort,n_sent):
     import heapq
     import time
     #Set Email and execute Query to find prospective PMIDs
-    Entrez.email = "ss.acanaceous@gmail.com"
+    Entrez.email = "youremail@domain.com"
     search_terms=["AB","TI","DP"]
     key_mapping = {'AB': 'Abstract','TI': 'Title','DP': 'Date'}
     
