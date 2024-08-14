@@ -10,4 +10,4 @@ Here's a diagram of the intended workflow:
 ![image](https://github.com/user-attachments/assets/e4b483c0-27ab-4f86-89c8-386c922df567)
 
 Here's an example of the cartography product:
-[Turbo22_10x10.pdf](https://github.com/user-attachments/files/16616288/Turbo22_10x10.pdf)
+![image](https://github.com/user-attachments/assets/54084a77-e8c7-4261-bd24-42cb52db51aa)
