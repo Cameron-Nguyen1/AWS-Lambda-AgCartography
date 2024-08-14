@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Pubmed Search!</title>
+    <title>Antigenic Cartography!</title>
     <style type="text/css">
       @font-face {
         font-family: "sans-serif";
@@ -32,14 +32,10 @@
         margin-top: 0;
       }
       h3 {
-        font-size: 1.15rem;
         margin-top: 1rem;
         margin-left: 1rem;
       }
-      p{
-        font-size: 1rem;
-      }
-      #sepbar {
+      #intro {
         background-color: #232f3e;
       }
       #instructions {
@@ -116,43 +112,32 @@
     </style>
   </head>
   <body>
-    <h1>Hi CVRG <- Sent by AWS Lambda!</h1>
-    <div id="sepbar" class="section">
+    <h1>Thanks for trying my cartography pipeline!</h1>
+    <div id="intro" class="section">
     </div>
     <div id="instructions" class="section">
-      <h2><b>Select a database and provide search parameters:</b></h2>
-      <form id="cparams" action="https://yourfunction.lambda-url.region.on.aws/" method="POST" enctype="multipart/form-data">
-        <div>
-          <label for="db">Database:</label>
-          <select name="db">
-            <option value="pubmed" selected>PubMed</option>
-            <option value="pmc">PubMed Central</option>
-          </select>
-          <label for="sort">Sort Method:</label>
-          <select name="sort">
-            <option value="Author">Author</option>
-            <option value="JournalName">Journal Name</option>
-            <option value="pub_date">Publication Date</option>
-            <option value="relevance" selected>Relevance</option>
-          </select>
-          <label for="n_sent">Number of Sentences:</label>
-          <select name="n_sent">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3" selected>3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select><br>
-          <label for="query">Query:</label>
-          <input name="query" placeholder='"mus musculus"[all] AND "vaccine"[Title/Abstract]' label="query" style="margin-top: 10px;">
-          <label for="rmax">Max Records:</label>
-          <input name="rmax" placeholder="5" label="rmax">
-          <input type="submit" value="Submit">
-        </div>
+      <h2>Antigenic cartography for titer tables</h2>
+      <h3><b>Step 1:</b> Provide Cartography Parameters and Upload </h3>
+      <form id="cparams" action="https://YOUR_LAMBDA_CARTOGRAPHY_FUNCTION_URL.DOMAIN" method="POST" enctype="multipart/form-data">
+          <div>
+              <input name="limits" placeholder="X.Y. Limits: -5,5,-5,5" label="limits">
+              <input name="psize" placeholder="PointSizes.Ag.Sr: 5,2" label="outdir">
+          </div>
+          <div>
+              <input name="prefix" placeholder="Prefix: MyStudy" label="prefix">
+              <input name="outdir" placeholder="Outdir: MyDir" label="outdir">
+          </div>
+          <div>
+              <input name="transparency" placeholder="Opacity.Ag.Sr: .8,1" label="outdir">
+              <input name="Ag.Overprint" placeholder="Ag.Overprint: FALSE" label="outdir">
+          </div>
+          <div>
+              <input name="fileup" placeholder="myfile.csv" type="file" label="fileup">
+              <input type="submit" value="submit">
+          </div>
       </form>
     </div>
     <div>
-      <h3></h3>
       <h3>{replaceme}</h3>
     </div>
   </body>
