@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 def pmParse(database,query,rmax,sort,n_sent):
     from Bio import Medline
     from Bio import Entrez
@@ -51,6 +52,8 @@ def pmParse(database,query,rmax,sort,n_sent):
         summariesDicto[PMID] = summary
     return(summariesDicto,dicto)
 =======
+=======
+>>>>>>> parent of 6f063ee (Update Lambda_PY.py)
 import json
 import boto3
 from requests_toolbelt import MultipartDecoder
@@ -59,6 +62,9 @@ import base64
 import io
 import re
 from botocore.exceptions import ClientError
+<<<<<<< HEAD
+>>>>>>> parent of 6f063ee (Update Lambda_PY.py)
+=======
 >>>>>>> parent of 6f063ee (Update Lambda_PY.py)
 
 logging.getLogger().setLevel(logging.INFO)
