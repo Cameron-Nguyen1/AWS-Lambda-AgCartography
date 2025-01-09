@@ -6,8 +6,5 @@ This pipeline was designed to operate within the free tier of AWS Lambda usage.
   
 The R container should be monitored for RAM usage, higher degrees of dimensionality will require more RAM.
 
-Here's a diagram of the intended workflow:
-![image](https://github.com/user-attachments/assets/e4b483c0-27ab-4f86-89c8-386c922df567)
-
 Here's an example of the cartography product:
 ![image](https://github.com/user-attachments/assets/54084a77-e8c7-4261-bd24-42cb52db51aa)
