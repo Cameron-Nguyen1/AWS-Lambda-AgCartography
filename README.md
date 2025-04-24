@@ -20,8 +20,8 @@ There are three Lambda functions and they are as follows:
 There are two S3 bucket involved. An input and an output bucket.
 
 ## Figure 1.
-
-
+Here's the landing page which is the initial web form.
+![image](https://github.com/user-attachments/assets/ecf63dca-88ac-4a9d-8283-1656b8bbba45)
 ## Figure 2.
 Here's an example of the cartography product:
 ![image](https://github.com/user-attachments/assets/54084a77-e8c7-4261-bd24-42cb52db51aa)
