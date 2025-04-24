@@ -8,7 +8,9 @@ import re
 from botocore.exceptions import ClientError
 
 logging.getLogger().setLevel(logging.INFO)
+
 client_s3 = boto3.client('s3')
+
 
 with open("index.html", 'r') as file:
     html = file.read()
@@ -62,13 +64,15 @@ def lambda_handler(event, context):
                 pattern_psize = re.compile('\d+,\d+')
                 pattern_opacity = re.compile('(\d|\.\d),(\d|\.\d)')
                 if not pattern_xy.match(request["limits"]):
-                    request["limits"] = "-10,10,-10,10"
+                    request["limits"] = "-5,5,-5,5"
                 if not pattern_psize.match(request["psize"]):
                     request["psize"] = "5,2"
                 if not pattern_opacity.match(request["transparency"]):
                     request["transparency"] = ".8,1"
-                if not request["Ag.Overprint"] == "TRUE" and not request["Ag.Overprint"] == "FALSE":
+                if not request["Ag.Overprint"].upper() == "TRUE" and not request["Ag.Overprint"].upper() == "FALSE":
                     request["Ag.Overprint"] = "FALSE"
+                if not request["Ag.Sort"].upper() == "TRUE" and not request["Ag.Sort"].upper() == "FALSE":
+                    request["Ag.Sort"] = "TRUE"
                 if request["outdir"] == "":
                     request["outdir"] = "DEFAULT_O"
                 if request["prefix"] == "":
@@ -82,18 +86,17 @@ def lambda_handler(event, context):
                   "out": request["outdir"],
                   "psizes": request["psize"],
                   "opacity": request["transparency"],
-                  "agOverprint": request["Ag.Overprint"]
+                  "agOverprint": request["Ag.Overprint"],
+                  "agSort": request["Ag.Sort"]
                 }
                 key = request["outdir"]+"/payload.json"
-                client_s3.put_object(Body=json.dumps(payload).encode(),Bucket="bucket_in",Key=key)
+                print("Submitting Put Object Request")
+                client_s3.put_object(Body=json.dumps(payload).encode(),Bucket="YOURINPUTBUCKET",Key=key) #REPLACE
                 newkey = request["outdir"]+".zip"
-                location = "https://bucket_out.s3.amazonaws.com/"+newkey
-                print("This is my key: ",newkey)
-                if object_exists("bucket_out", newkey,client_s3):
-                    client_s3.delete_object(Bucket="bucket_out", Key=newkey)
-                reference = '<a href="'+location+'">Download Ready!</a>'
-                print("This is my reference: ",reference)
-                rehtml = html.replace('{replaceme}', reference)
+                if object_exists("YOUROUTPUTBUCKET", newkey,client_s3): #REPLACE
+                    client_s3.delete_object(Bucket="YOUROUTPUTBUCKET", Key=newkey) #REPLACE
+                rehtml = html.replace("IMAKEY", newkey)
+                rehtml = rehtml.replace('{replaceme}','<button onclick="sign_and_download()">Submit Download Request</button>')
                 response = {
                     "statusCode": 200,
                     "body": rehtml,

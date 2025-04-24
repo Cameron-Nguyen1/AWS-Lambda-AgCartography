@@ -1,0 +1,224 @@
+<html>
+  <script>
+    function sign_and_download() {
+        const key = "IMAKEY";
+        const bucket = "YOUROUTPUTBUCKET";
+        const api = "https://yoursigneds3urlapi.execute-api.region.amazonaws.com/branch/apiname";
+        const url = new URL(api);
+        url.searchParams.append('bucket', bucket);
+        url.searchParams.append('key', key); // To be replaced by Python code
+        console.log('Built request, now fetching');
+
+        // Perform a HEAD request to check if the object exists
+        fetch(url, { method: 'HEAD' })
+            .then(response => {
+                if (response.status === 200) {
+                    // If the status code is 200, perform the GET request
+                    fetch(url)
+                        .then(response => response.text())
+                        .then(signedUrl => {
+                            console.log("Retrieved signed URL");
+
+                            // Create a temporary link element and simulate a click to download the file
+                            const link = document.createElement('a');
+                            link.href = signedUrl;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        })
+                        .catch(error => console.error('Error:', error));
+                } else {
+                    console.error('Object not found or other error');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+  </script>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Antigenic Cartography</title>
+    <style type="text/css">
+      @font-face {
+        font-family: "sans-serif";
+      }
+      body {
+        margin: 0;
+        font-family: "Amazon Ember", Helvetica, Arial, sans-serif;
+      }
+    h1 {
+      background-color: #7BAFD4;
+      color: white;
+      font-size: 3rem;
+      font-weight: 300;
+      text-shadow:
+        3px 3px 2px #000,
+        -3px 3px 2px #000,
+        -3px -3px 2px #000,
+        3px -3px 2px #000;
+      margin: 0;
+      padding: 1rem;
+      text-align: center;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: normal;
+      margin-top: 0;
+    }
+    h3 {
+      font-size: 1rem;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      margin-bottom: 2rem;
+      font-weight: normal;
+    }
+      #sepbar {
+        background-color: #232f3e;
+      }
+      #instructions {
+        background-color: #d5dbdb;
+        margin-bottom: 2rem;
+        padding: 2rem;
+      }
+      .hide {
+        display: none;
+      }
+      .section {
+        padding: 2rem;
+        padding-top: 0;
+      }
+      .section > div {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .section > div > div {
+        flex-grow: 1;
+      }
+      .card {
+        border-top: 1px solid #eaeded;
+        box-shadow: 0 1px 1px 0 rgba(0,28,36,.3), 1px 1px 1px 0 rgba(0,28,36,.15), -1px 1px 1px 0 rgba(0,28,36,.15);
+        padding: 1rem;
+      }
+      a {
+        color: #0073bb;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+    input[type="text"] {
+      font-family: "Amazon Ember", Helvetica, Arial, sans-serif;
+      flex-grow: 1;
+      border: 1px solid #aab7b8;
+      border-radius: 2px;
+      color: #16191f;
+    }
+    input[type="text"]:focus {
+      border: 1px solid #00a1c9;
+      box-shadow: 0 0 0 1px #00a1c9;
+      outline: 2px dotted transparent;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-right: 3rem;
+    }
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    label {
+      width: auto;
+    }
+    input[type="submit"] {
+      margin-top: 2rem;
+      background-color: white;
+      border: 1px solid #545b64;
+      border-radius: 2px;
+      color: #545b64;
+      cursor: pointer;
+      font-weight: 700;
+      padding: .4rem 2rem;
+      max-width: calc(33.33% - 1rem);
+      align-self: start;
+    }
+    input[type="submit"]:hover {
+      background-color: #f2f3f3;
+      border: 1px solid #16191f;
+      color: #16191f;
+    }
+    @media only screen and (max-width: 800px) {
+      .section > div {
+        flex-direction: column;
+      }
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+  </head>
+  <body>
+    <h1>Antigenic Cartography</h1>
+    <div id="sepbar" class="section">
+    </div>
+    <div id="instructions" class="section">
+      <h2><b>Instructions:</b></h2>
+      <h3>Provide Cartography Parameters and Upload. </h3>
+      <form id="cparams" action="https://yourlambda.lambda-url.region.on.aws/" method="POST" enctype="multipart/form-data">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="limits">X.Y. Limits:</label>
+            <input name="limits" id="limits" placeholder="-5,5,-5,5">
+          </div>
+          <div class="form-group">
+            <label for="psize">PointSizes.Ag.Sr:</label>
+            <input name="psize" id="psize" placeholder="5,2">
+          </div>
+          <div class="form-group">
+            <label for="prefix">Prefix:</label>
+            <input name="prefix" id="prefix" placeholder="MyStudy">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="outdir">Outdir:</label>
+            <input name="outdir" id="outdir" placeholder="MyDir">
+          </div>
+          <div class="form-group">
+            <label for="transparency">Opacity.Ag.Sr:</label>
+            <input name="transparency" id="transparency" placeholder=".8,1">
+          </div>
+          <div class="form-group">
+            <label for="Ag.Overprint">Ag.Overprint:</label>
+            <input name="Ag.Overprint" id="Ag.Overprint" placeholder="FALSE">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="Ag.Sort">Ag.Sort:</label>
+            <input name="Ag.Sort" id="Ag.Sort" placeholder="TRUE">
+          </div>
+          <div class="form-group">
+            <label for="fileup">File:</label>
+            <input name="fileup" id="fileup" placeholder="myfile.csv" type="file">
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="submit">
+        </div>
+      </form>
+    </div>
+    <div>
+      {replaceme}
+    </div>
+  </body>
+</html>

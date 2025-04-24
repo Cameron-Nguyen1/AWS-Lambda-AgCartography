@@ -1,6 +1,6 @@
 FROM public.ecr.aws/lambda/provided:al2023
 
-ENV R_VER=4.2.2
+ENV R_VER=4.3.1
 
 RUN dnf install -y libcurl-devel openssl-devel vim
 RUN mkdir -p /opt
@@ -16,7 +16,7 @@ RUN Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive
 RUN Rscript -e "install.packages(c('rjson','httr', 'jsonlite', 'logger', 'remotes','stringr','reshape2','paletteer','aws.s3'))"
 
 RUN mkdir -p /lambda
-COPY runtime.R /lambda
+COPY test_runtime.r /lambda
 RUN chmod 755 -R /lambda 
 
 WORKDIR /
@@ -24,4 +24,4 @@ COPY bootstrap.sh /bootstrap.sh
 RUN chmod +x /bootstrap.sh
 ENTRYPOINT ["/bootstrap.sh"]
 
-CMD ["runtime"]
+CMD ["test_runtime"]
