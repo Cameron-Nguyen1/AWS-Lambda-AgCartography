@@ -16,7 +16,7 @@ RUN Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive
 RUN Rscript -e "install.packages(c('rjson','httr', 'jsonlite', 'logger', 'remotes','stringr','reshape2','paletteer','aws.s3'))"
 
 RUN mkdir -p /lambda
-COPY test_runtime.r /lambda
+COPY runtime.R /lambda
 RUN chmod 755 -R /lambda 
 
 WORKDIR /
@@ -24,4 +24,4 @@ COPY bootstrap.sh /bootstrap.sh
 RUN chmod +x /bootstrap.sh
 ENTRYPOINT ["/bootstrap.sh"]
 
-CMD ["test_runtime"]
+CMD ["runtime"]
